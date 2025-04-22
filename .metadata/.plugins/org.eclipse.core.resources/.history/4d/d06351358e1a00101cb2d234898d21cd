@@ -1,0 +1,31 @@
+package model.mapper;
+
+import java.util.List;
+
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Select;
+
+import model.member.Member;
+
+public interface MemberMapper {
+
+	@Insert("insert into member (id,pass,name,gender,tel,email,picture)"
+			 + " values (#{id},#{pass},#{name},#{gender},#{tel},#{email},#{picture})")
+	int insert(Member mem);
+
+	@Select("select * from member where id = #{value}")
+	Member selectOne(String id);
+
+	@Select("select * from member")
+	List<Member> selectList();
+
+	@Select("update member set name = #{name}, gender = #{gender}, tel = #{tel}, "
+			+ " email = #{email}, picture = #{picture} where id = #{id}")
+	int update(Member mem);
+
+	@Delete("delete from member where id = #{v}")
+	int delete(String id);
+	
+
+}

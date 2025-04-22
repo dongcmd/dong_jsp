@@ -1,0 +1,8 @@
+package model;
+
+import org.apache.ibatis.session.SqlSessionFactory;
+
+public class MybatisConnection {
+	private MybatisConnection() {}
+	private static SqlSessionFactory sqlMap
+}

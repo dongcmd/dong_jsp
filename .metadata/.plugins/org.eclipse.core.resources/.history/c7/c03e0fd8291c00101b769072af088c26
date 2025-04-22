@@ -1,0 +1,5 @@
+package model.mapper;
+
+public class BookMapper {
+
+}

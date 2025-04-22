@@ -1,0 +1,57 @@
+package main;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+public class Main3_Dynamic {
+	private final static SqlSessionFactory sqlMap;
+	static {
+		InputStream input = null;
+		try {
+			input = Resources.getResourceAsStream("mapper/mybatis-config.xml");
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		sqlMap = new SqlSessionFactoryBuilder().build(input);
+	}
+	public static void main(String[] args) {
+		SqlSession session = sqlMap.openSession();
+		List<Student> list = session.selectList("student2.select1");
+		System.out.println("	학생 전체 레코드 조회 : " + list.size());
+		for(Student s : list) System.out.println(s);
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("grade", 1);
+		list = session.selectList("student2.select1", map);
+		System.out.println("	1학년 학생 레코드 조회 : " + list.size());
+		for(Student s : list) System.out.println(s);
+
+		map.clear();
+		map.put("studno", 220111);
+		Student st = session.selectOne("student2.select1", map);
+		System.out.println("	학번 220111 조회 : ");
+		System.out.println(st);
+		
+		map.clear();
+		map.put("height", 180);
+		list = session.selectList("student2.select1", map);
+		System.out.println("	키 180 이상 조회 : " + list.size());
+		for(Student s : list) System.out.println(s);
+		
+		map.clear();
+		map.put("height", 180);
+		map.put("grade", 1);
+		list = session.selectList("student2.select1", map);
+		System.out.println("	키 180 이상 조회 : " + list.size());
+		for(Student s : list) System.out.println(s);
+		
+	}
+}

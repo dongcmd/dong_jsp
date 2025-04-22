@@ -1,0 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%-- /webapp/biew/board/writeForm.jsp --%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>게시글 등록</title>
+</head>
+<body>
+	<form action="write" method="post" enctype="multipart/form-data" name="f">
+		<h2 class="text-center">게시판 글쓰기 writeForm</h2>
+	</form>
+</body>
+</html>

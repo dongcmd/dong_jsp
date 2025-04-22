@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--  /mybatisstudy/src/mapper/ProfessorMapper.xml -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="prof">	
+	<select id="inputdata" resultType="Prof" parameterType="string">
+		select * from professor ${v}
+	</select>
+</mapper>
+
+<!-- 
+1. 교수테이블에 등록된 레코드의 건수를 출력하기.
+2. 교수테이블에 등록된 모든 정보를 출력하기
+3. 교수중 101번 학과의 교수 정보를 출력하기
+4. 교수중 성이 김씨인 시간강사 정보를 출력하기 
+*/
+ -->

@@ -1,0 +1,13 @@
+package model.book;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import model.mapper.BookMapper;
+
+public class BookDao {
+	private Class<BookMapper> cls = BookMapper.class;
+	Map<String, Object> map = new HashMap<String, Object>();
+	
+	
+}

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<button id="btn">json 연습</button>
+<div id="result"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+$(function() {
+	$("#btn").click(function(){
+		$.ajax({
+			url : "ex12_person.jsp",
+			success : function(data){
+				let person = JSON.parse(data)
+			}
+		})
+	})
+})
+</script>
+</body>
+</html>

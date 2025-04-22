@@ -1,0 +1,9 @@
+package mapper;
+/*
+ * 인터페이스 방식으로 Mapper 사용하기
+ * 1. mybatis-config.xml 의 Mapper에 package로 설정
+ * 2. namespace : mapper.StudentMapper 인터페이스의 전체 이름
+ */
+public interface StudentMapper {
+
+}

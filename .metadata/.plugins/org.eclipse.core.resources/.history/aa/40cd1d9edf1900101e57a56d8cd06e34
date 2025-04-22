@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!--  /mapper/StudentMapper1.xml -->
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="student">
+	<insert id="insert" parameterType="Student">
+		insert into student(studno, name, id, jumin, grade, major1)
+		values  (#{studno},#{name},#{id},#{jumin},#{grade},#{major1})
+	</insert>
+	<select id="selectNo" parameterType="int" resultType="Student">
+		select * from student where studno=#{value}
+	</select>
+	<!-- 
+		resultType="클래스명"
+		조회된 결과의 컬럼명과 같은 "클래스의 set 프로퍼티"를 호출
+		컬럼명 studno => Student.setStudno(컬럼 studno)
+	-->
+	<update id="update" parameterType="Student">
+		update student set grade=#{grade}, weight=#{weight},
+					height=#{height}, profno=#{profno}
+					where studno = #{studno}
+	</update>
+	<delete id="delete" parameterType="int">
+		delete from student where studno=#{studno}
+	</delete>
+	<select id="count" resultType="int">
+		select count(*) from student
+	</select>
+	<select id="list" resultType="Student">
+		select * from student
+	</select>
+</mapper>

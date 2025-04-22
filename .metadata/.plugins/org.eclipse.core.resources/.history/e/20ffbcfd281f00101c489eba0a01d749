@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<button id="btn">XML 연습</button>
+<div id="person"></div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+	$(function() {
+		$("#btn").click(function() {
+			$.ajax("ex10_person.xml", {
+				success : function(data) {
+					$(data).find("person").each(function() {
+						name = "<li>" + $(this).find("name").text() + "</li>";
+						gen= "<li>" + $(this).find("gender").text() + "</li>";
+						part = "<li>" + $(this).find("part").text() + "</li>";
+						$("#person").append("<ul>"+name+gen+part+"</ul>");
+					})
+				}
+			})
+		
+		})
+	})
+</script>
+</body>
+</html>

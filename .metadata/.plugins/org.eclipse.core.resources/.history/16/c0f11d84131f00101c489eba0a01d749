@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+<meta charset="UTF-8">
+<title></title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+<form name="f">
+	아이디 : <input id="id">
+		<input type="button" value="아이디중복" id="btn"><br>
+	비밀번호 : <input type="password" id="pass"><br>
+		<input type="submit" value="로그인" id="loginbtn"><br>
+</form>
+<div id="msg"></div>
+</body>
+</html>
+<!-- 
+	1. 로그인 버튼 클릭시 id, pass 값을 ex08_login.jsp로 전송
+	2. ex08_login.jsp
+		- member 테이블을 읽어 id, pass 검증
+		- 일치 : 반갑습니다 name님 => msg에 출력
+-->

@@ -1,0 +1,30 @@
+package main;
+
+import java.io.IOException;
+import java.io.InputStream;
+
+import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.session.SqlSessionFactory;
+import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import mapper.StudentMapper;
+
+public class Main5_Interface {
+	private final static SqlSessionFactory sqlMap;
+	// cls : Mapper의 클래스 정보
+	private final static Class<StudentMapper> cls = StudentMapper.class;
+	static {
+		InputStream input = null;
+		try {
+			input = Resources.getResourceAsStream("mapper/mybatis-config.xml");
+		} catch(IOException e) {
+			e.printStackTrace();
+		}
+		sqlMap = new SqlSessionFactoryBuilder().build(input);
+	}
+	public static void main(String[] args) {
+		SqlSession session = sqlMap.openSession();
+	}
+
+}

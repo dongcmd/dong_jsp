@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<input type="button" value="json 읽기" onclick="load('ex03_json.json')">
+<div id="area"></div>
+<script>
+	function load(url) {
+		const xhttp = new XMLHttpRequest();
+		xhttp.open("get", url);
+		xhttp.send();
+		xhttp.onreadystatechange = callback
+	}
+	function callback() {
+		if(this.readyState == 4 && this.status == 200) {
+			let area = document.querySelector("#area") // div 태그
+			/* JSON.parse
+				[] : 배열
+				{} : 객체
+	[{"author" : {"book":"ajax", "pubData" : "2025-04-21"}},
+	 {"author" : {"book":"자바", "pubData" : "2025-02-01"}},
+	 {"author" : {"book":"web", "pubData" : "2025-03-01"}}]
+			data : 배열. json 객체를 요소로 가짐 */
+			let data = JSON.parse(this.responseText);
+			for(s of data) {
+				area.innerHTML += "<p>" + s.author.book + " : "
+					+ s.author.pubData + "</p>"
+			}
+		}
+	}
+</script>
+</body>
+</html>

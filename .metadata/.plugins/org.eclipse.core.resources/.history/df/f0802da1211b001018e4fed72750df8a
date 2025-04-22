@@ -1,0 +1,34 @@
+-- /java/sql/study.sql
+create table board (
+  num int auto_increment primary key, -- 글번호
+  writer varchar(30),
+  pass varchar(20),
+  title varchar(100),
+  content varchar(2000),
+  file1 varchar(200),
+  boardid varchar(2),
+  regdate datetime,
+  readcnt int(10),
+  grp int,
+  grplevel int(3),
+  grpstep int(5)
+)
+
+select * from board
+
+select * from member
+
+select * from student where name='진영훈'
+
+update member set gender=1 where id='dong'
+
+update member set picture="banana.gif" where id != "admin"
+
+drop table book
+create table book (
+   no int AUTO_INCREMENT primary key,
+   writer varchar(50),
+   title varchar(100),
+   content varchar(2000)
+)
+select * from book

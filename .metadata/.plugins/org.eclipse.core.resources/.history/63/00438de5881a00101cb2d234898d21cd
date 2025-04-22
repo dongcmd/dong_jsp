@@ -1,0 +1,12 @@
+package model.mapper;
+
+import model.member.Member;
+
+public interface MemberMapper {
+
+	@Insert
+	int insert(Member mem);
+	
+	 String sql = "insert into member (id,pass,name,gender,tel,email,picture)"
+			 + " values (?,?,?,?,?,?,?)";
+}

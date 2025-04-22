@@ -1,0 +1,14 @@
+package model.mapper;
+
+import org.apache.ibatis.annotations.Insert;
+
+import model.member.Member;
+
+public interface MemberMapper {
+
+	@Insert("insert into member (id,pass,name,gender,tel,email,picture)"
+			 + " values (?,?,?,?,?,?,?)")
+	int insert(Member mem);
+	
+
+}

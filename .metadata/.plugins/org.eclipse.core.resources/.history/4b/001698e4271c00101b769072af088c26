@@ -1,0 +1,23 @@
+package controller;
+
+import javax.servlet.annotation.WebInitParam;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import gdu.mskim.MskimRequestMapping;
+import gdu.mskim.RequestMapping;
+
+@WebServlet(urlPatterns = {"/book/*"},
+	initParams = {@WebInitParam(name = "view", value="/view/")})
+public class BookController extends MskimRequestMapping {
+	
+	@RequestMapping("bookForm")
+	public String bookForm(HttpServletRequest request,
+			HttpServletResponse response) {
+		request.setAttribute("url", "bookForm");
+		return "book/bookForm";
+		return "alert";
+	}
+	
+}

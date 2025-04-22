@@ -1,0 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<script>
+for(i = 0; i < 9; i++) {
+	console.log(Math.floor(Math.random()*100))
+}
+</script>

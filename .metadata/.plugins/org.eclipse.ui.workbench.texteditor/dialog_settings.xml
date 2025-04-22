@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<item key="hasShownOverlayPopupBefore" value="true"/>
+	<section name="java.lang.Class">
+		<item key="replaceBarOpen" value="true"/>
+		<list key="findhistory">
+			<item value="name"/>
+			<item value="sigu"/>
+			<item value="sido"/>
+			<item value="getText("/>
+			<item value="list"/>
+			<item value="path"/>
+			<item value="getText"/>
+			<item value="select"/>
+			<item value="jquery"/>
+			<item value="ㅓ볃교"/>
+			<item value="arr"/>
+			<item value="북"/>
+			<item value="namelist"/>
+			<item value="background"/>
+			<item value="그라시아 B03호"/>
+		</list>
+		<list key="replacehistory">
+			<item value="sigu"/>
+			<item value="서"/>
+			<item value="동"/>
+			<item value="남"/>
+			<item value="b."/>
+			<item value="b"/>
+			<item value="{"/>
+			<item value="}"/>
+			<item value="Parameter"/>
+		</list>
+	</section>
+	<section name="org.eclipse.ui.texteditor.GotoLineAction$GotoLineDialog_dialogBounds">
+		<item key="DIALOG_X_ORIGIN" value="472"/>
+		<item key="DIALOG_Y_ORIGIN" value="387"/>
+	</section>
+</section>
