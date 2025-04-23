@@ -1,8 +1,0 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<script>
-let nums = "";
-for(i = 0; i < 9; i++) {
-	nums += Math.floor(Math.random()*100) + ","
-}
-</script>

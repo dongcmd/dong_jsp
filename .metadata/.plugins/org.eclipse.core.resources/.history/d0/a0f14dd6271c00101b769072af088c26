@@ -1,7 +1,0 @@
-package model.book;
-
-import model.mapper.BookMapper;
-
-public class BookDao {
-	private Class<BookMapper> cls = BookMapper.class;
-}

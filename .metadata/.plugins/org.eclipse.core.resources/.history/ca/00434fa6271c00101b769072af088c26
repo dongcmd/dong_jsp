@@ -1,7 +1,0 @@
-package model.book;
-
-public class Book {
-	private String writer;
-	private String title;
-	private String content;
-}
