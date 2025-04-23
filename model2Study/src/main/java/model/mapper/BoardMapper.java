@@ -69,4 +69,14 @@ public interface BoardMapper {
 	@Delete("delete from board where num = #{num}")
 	int delete(int num);
 
+	@Select("select writer, count(*) cnt from board "
+			+ " group by writer order by cnt desc limit 0,5")
+	List<Map<String, Object>> graph1();
+	
+	@Select("select date_format(regdate, '%Y-%m-%d') fmtdate, count(*) cnt from board "
+			+ "where regdate >=  now() - interval 7 day "
+			+ "group by date_format(regdate, '%Y-%m-%d') "
+			+ "order by cnt desc")
+	List<Map<String, Object>> graph2();
+
 }

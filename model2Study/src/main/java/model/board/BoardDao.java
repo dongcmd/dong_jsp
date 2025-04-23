@@ -156,5 +156,30 @@ public class BoardDao {
 		finally { MybatisConnection.close(session); }
 		return false;
 	}
-	
+
+	public List<Map<String, Object>> boardGraph1() {
+		SqlSession session = MybatisConnection.getConnection();
+		List<Map<String,Object>> list = null;
+		try {
+			list = session.getMapper(cls).graph1();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(session);
+		}
+		return list;
+	}
+
+	public List<Map<String, Object>> boardGraph2() {
+		SqlSession session = MybatisConnection.getConnection();
+		List<Map<String,Object>> list = null;
+		try {
+			list = session.getMapper(cls).graph2();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			MybatisConnection.close(session);
+		}
+		return list;
+	}
 }

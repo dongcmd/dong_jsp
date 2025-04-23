@@ -89,6 +89,14 @@
 </nav>
 
 <div class="container" style="margin-top:30px">
+<div class="row">
+	<div class="col" style="border:1px black solid">
+		<canvas id="canvas1" style="width:100%"></canvas>
+	</div>
+	<div class="col" style="border:1px black solid">
+		<canvas id="canvas2" style="width:100%"></canvas>
+	</div>
+</div>
 	<sitemesh:write property="body" />
 </div>
 
@@ -129,9 +137,106 @@
 	</div>
 </footer>
 
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
+function pieGraph() {
+	$.ajax("${path}/ajax/graph1", {
+		success : function(data) { pieGraphPrint(data); }
+		, error : function(e) { alert("서버오류 " + e.status);
+		}
+	});
+}
+function pieGraphPrint(data) {
+	let rows = JSON.parse(data);
+	let writers = [];
+	let datas = [];
+	let colors = [];
+	$.each(rows, function(i, item) {
+		writers[i] = item.writer;
+		datas[i] = item.cnt;
+		colors[i] = randomColor();
+	})
+	let config = {
+		type : "pie",
+		data : {
+			datasets : [{
+				data : datas,
+				backgroundColor : colors
+			}],
+			labels : writers
+		},
+		options : {
+			 responsive : true,
+			 legend : { position : "right" },
+			 title : {
+			 	display : true,
+			 	text : "작성자별 게시물 수(최대 5명)",
+			 	position : "bottom"
+			 }
+		}
+	}
+	let ctx = document.querySelector("#canvas1");
+	new Chart(ctx,config);
+}
+function barGraph() {
+	$.ajax("${path}/ajax/graph2", {
+		success : function(data) { barGraphPrint(data); }
+		, error : function(e) { alert("서버오류 " + e.status);
+		}
+	});
+}
+function barGraphPrint(data) {
+	let rows = JSON.parse(data);
+	let dates = [];
+	let cnts = [];
+	let colors = [];
+	$.each(rows, function(i, item) {
+		console.log(item)
+		dates[i] = item.fmtdate;
+		cnts[i] = item.cnt;
+		colors[i]= randomColor();
+	});
+	let config = {
+		type : "bar",
+		data : {
+			datasets : [{
+				label : cnts,
+				data : cnts,
+				backgroundColor : colors
+			}],
+			labels : dates
+		},
+		options : {
+			responsive : true,
+			legend : { position : "right" },
+			title : {
+				display : true,
+				text : "최근 7일간 게시물 수",
+				position : "bottom"
+			}
+		}
+	}
+	let ctx = document.querySelector("#canvas2");
+	new Chart(ctx, config);
+}
+function randomColorFactor() {
+	return Math.round(Math.random() * 255)
+}
+function randomColor(opacity) {
+	let c = "rgba(";
+	for(i = 0; i < 3; i++)
+		c += randomColorFactor() + ","
+	c += (opacity || 1 ) + ")"
+	return c
+}
+<%-- 캔버스1 : 작성자별 게시물 등록 건수 pie 그래프 가장 많이 작성한 작성자 5명
+		 캔버스2 : 최근 작성일자별 게시물 등록 건수 막대그래프 : 최근 7일 --%>
+</script>
+<script>
 	$(function() {
+		pieGraph(); // 캔버스1 : 작성자별 게시물 등록 건수 pie 그래프 가장 많이 작성한 작성자 5명
+		barGraph(); // 캔버스2 : 최근 작성일자별 게시물 등록 건수 막대그래프 : 최근 7일
 		let divid;
 		let si;
 		$.ajax({
@@ -161,6 +266,7 @@
 "selected" : document.querySelector("select[name=" + sigu + "]").value},
 			success : function(data) {
 				let arr = JSON.parse(data);
+				$("select[name=" + next + "]").append("<option>" + (next=="gu" ? "구를" : "동을") + " 고르세요</option>");
 				$.each(arr, function(i, item) {
 					$("select[name=" + next + "]").append(function() {
 						return "<option>" + item + "</option>";

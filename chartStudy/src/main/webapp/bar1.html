@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<div><canvas id="myChart"></canvas></div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
+<script>
+	const ctx = document.querySelector("#myChart");
+	new Chart(ctx, {
+		type : "bar",
+		data : {
+    	labels: ['A', 'B', 'C', 'D', 'E', 'F'],
+    	datasets : [{
+    		label : "# of votes1",
+    		data : [12, 19, 3, 5, 2, 3],
+    		borderWidth : 1,
+    		backgroundColor : ['black', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']
+    	},
+    	{
+    		label : "# of votes2",
+    		data : [5, 9, 1, 10, 15, 3],
+    		borderWidth : 1,
+    		backgroundColor : ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange']
+    	}]
+		},
+		options : {
+			scales : {y : {beginAtZero : true}},
+			plugins:{
+				legend : {position : "left"}
+			}
+		}
+	})
+</script>
+</body>
+</html>

@@ -162,7 +162,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="D:\dong_study\jsp\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="D:\dong_study\jsp\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\ajaxStudy" path="/ajaxStudy" reloadable="true" source="org.eclipse.jst.jee.server:ajaxStudy"/><Context docBase="D:\dong_study\jsp\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\model2Study" path="/model2Study" reloadable="true" source="org.eclipse.jst.jee.server:model2Study"/></Host>
+      <Context docBase="D:\dong_study\jsp\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="D:\dong_study\jsp\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\chartStudy" path="/chartStudy" reloadable="true" source="org.eclipse.jst.jee.server:chartStudy"/><Context docBase="D:\dong_study\jsp\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\model2Study" path="/model2Study" reloadable="true" source="org.eclipse.jst.jee.server:model2Study"/></Host>
     </Engine>
   </Service>
 </Server>

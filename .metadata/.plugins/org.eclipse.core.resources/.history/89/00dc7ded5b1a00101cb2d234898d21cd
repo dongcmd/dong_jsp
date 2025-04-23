@@ -1,7 +1,0 @@
-package main;
-
-public class Main3_Dynamic {
-	public static void main(String[] args) {
-		
-	}
-}

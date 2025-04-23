@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<body>
+<div style="width: 75%; height: 300px;">
+  <canvas id="canvas" style="width: 100%; height: 100%;"></canvas>
+</div>
+<script>
+	let months = [
+		  "1월", "2월", "3월", "4월", "5월", "6월",
+		  "7월", "8월", "9월", "10월", "11월", "12월"
+		];
+	let chartData = {
+		labels : months,
+		datasets : [
+			{
+				type : "line",
+				label : "영업부",
+				borderColor : "#FF00FF",
+				borderWidth : 3,
+				fill : true,
+				data : [10, 15, 25, 55, -25, -65, 30, 56, 78, 12, 50, 25]
+			},
+			{
+				type : "bar",
+				label : "영업부",
+				backgroundColor : "#A566FF",
+				borderColor : "black",
+				borderWidth : 2,
+				data : [10, 15, 25, 55, -25, -65, 30, 56, 78, 12, 50, 25]
+			}
+		]
+	}
+	window.onload = function() {
+		let ctx = document.getElementById("canvas");
+		new Chart(ctx, {
+			type : "bar",
+			data : chartData,
+			options : {
+				responsive : true,
+				maintainAspectRatio: false,
+				title : {
+					display : true,
+					text : "막대와 선 그래프"
+				},
+				plugins :{
+					legend : {
+						display : true,
+						position : "bottom"
+					},
+				},
+				scales : {
+					y : {
+						title: {
+							display : true,
+							text : "부서별 실적 증가율"
+						}
+					}
+				}
+			}
+		})
+	}
+</script>
+</body>
+</html>

@@ -14,7 +14,12 @@ create table board (
   grpstep int(5)		-- 그룹의 출력 순서
 )
 
+update board set readcnt = 1 where readcnt = 0
 
+select date_format(regdate, '%Y-%m-%d') fmtdate, count(*) cnt from board
+where regdate >=  now() - interval 7 day
+group by date_format(regdate, '%Y-%m-%d')
+order by cnt desc
 
 select * from board where boardid = 1
 	order by grp desc, grpstep asc
