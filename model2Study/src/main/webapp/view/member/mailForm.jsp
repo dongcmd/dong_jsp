@@ -25,7 +25,7 @@ function input_check(f) {
 <body>
 <div class="container">
     <h2>메일 작성 mailForm</h2>
-    <form name="form1" method="post" action="mailSend" onsubmit="return inputchk(this)">
+    <form name="form1" method="post" action="mailSend" onsubmit="return input_check(this)">
         <table class ="table">
             <tr>
                 <th>보내는 사람</th>
@@ -48,9 +48,9 @@ function input_check(f) {
             </tr>
             <tr>
                 <th>메세지 형식</th>
-                <td><select name ="mtype" class="form-control">
-                    <option value="text/html;charset=UTF-8">HTML</option>
-                    <option value="text/plain;charset=UTF-8">TEXT</option>
+                <td><select id="mtype" name ="mtype" class="form-control">
+                    <option value="text/html;charset=utf-8;">HTML</option>
+                    <option value="text/plain;charset=utf-8;">TEXT</option>
                 </select></td></tr>
             <tr>
                 <td colspan="2">
@@ -64,5 +64,54 @@ function input_check(f) {
                 </td>
         </table>
     </form>
+<script>
+	$(function() {
+		$("#summernote").summernote({
+			height : 300,
+			callbacks : {
+					onImageUpload : function(files) {
+						for(let i = 0;i < files.length; i++) {
+							sendFile(files[i]);
+					}
+			}
+			}
+		})
+	})
+	function sendFile(file) {
+		let data = new FormData();
+		data.append("file", file);
+		$.ajax({
+			url : "${path}/uploadImage",
+			type : "post",
+			data : data,
+			processData : false,
+			contentType : false,
+			success : function(url) {
+				$("#summernote").summernote("insertImage", url);
+			}, error : function(e) { alert("이미지업로드 실패 " + e.status); }
+		})
+	}
+	
+	$("#mtype").change(function() {
+		const type = $(this).text();
+		const textareaEl = $("[name='content']");
+		
+		if(type == "HTML") {
+			textareaEl.attr("id", "summernote").summernote({
+				height : 300,
+				callbacks : {
+						onImageUpload : function(files) {
+							for(let i = 0;i < files.length; i++) {
+								sendFile(files[i]);
+							}
+					}
+				}
+			})
+		} else if (type == "TEXT") {
+			textareaEl.summernote("destroy");
+			textareaEl.removeAttr("id");
+		}
+	})
+</script>
 </body>
 </html>

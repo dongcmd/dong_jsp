@@ -25,6 +25,7 @@
 	 {"author" : {"book":"web", "pubData" : "2025-03-01"}}]
 			data : 배열. json 객체를 요소로 가짐 */
 			let data = JSON.parse(this.responseText);
+	 console.log(data)
 			for(s of data) {
 				area.innerHTML += "<p>" + s.author.book + " : "
 					+ s.author.pubData + "</p>"

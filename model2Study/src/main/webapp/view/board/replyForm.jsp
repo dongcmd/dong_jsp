@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>답변하기</title>
+<title>replyForm</title>
 </head>
 <body>
 <form action="reply" method="post" name="f">
@@ -24,11 +24,39 @@
 			<tr><th>제목</th>
 					<td><input type="text" name="title" value="RE:${b.title}"></td></tr>
 			<tr><th>내용</th>
-					<td><textarea name="content" rows="10" id="content"></textarea></tr>
+					<td><textarea name="content" rows="10" id="summernote"></textarea></tr>
 			<tr><td colspan="2" align="center">
 				<a href="javascript:document.f.submit()">[답변글 등록]</a></td></tr>
 		</table>
 	</div>
 </form>
+<script>
+	$(function() {
+		$("#summernote").summernote({
+			height : 300,
+			callbacks : {
+					onImageUpload : function(files) {
+						for(let i = 0;i < files.length; i++) {
+							sendFile(files[i]);
+					}
+			}
+			}
+		})
+	})
+	function sendFile(file) {
+		let data = new FormData();
+		data.append("file", file);
+		$.ajax({
+			url : "${path}/uploadImage",
+			type : "post",
+			data : data,
+			processData : false,
+			contentType : false,
+			success : function(url) {
+				$("#summernote").summernote("insertImage", url);
+			}, error : function(e) { alert("이미지업로드 실패 " + e.status); }
+		})
+	}
+</script>
 </body>
 </html>

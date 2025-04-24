@@ -21,7 +21,7 @@
 			<tr><td>제목</td>
 					<td><input type="text" name="title" class="form-control"></td></tr>
 			<tr><td>내용</td>
-					<td><textarea rows="15" name="content" class="form-control" id="content"></textarea>
+					<td><textarea rows="15" name="content" class="form-control" id="summernote"></textarea>
 			<tr><td>첨부파일</td>
 					<td><input type="file" name="file1"></td></tr>
 			<tr><td colspan="2" align="center">
@@ -47,6 +47,38 @@
 			return;
 		}
 		f.submit(); // submit 발생 => form의 action 페이지로 요청
+	}
+</script>
+<%-- summernote 관련 구현 --%>
+<script>
+	$(function() {
+		$("#summernote").summernote({
+			height : 300,
+			callbacks : {
+				// onImageUpload : 이미지 업로드 이벤트 발생
+				// files : 배열. 다수의 이미지 업로드 가능
+				onImageUpload : function(files) {
+					for(let i = 0; i < files.length; i++) {
+						sendFile(files[i]);
+					}
+				}
+			}
+		})
+	})
+	function sendFile(file) {
+		let data = new FormData();
+		// 폼 데이터를 수집하고, 전송 가능한 객체. 파일업로드에 사용.
+		data.append("file", file);
+		$.ajax({
+			url : "${path}/uploadImage",
+			type : "post",
+			data : data,
+			processData : false,
+			contentType : false,
+			success : function(url) {
+				$("#summernote").summernote("insertImage", url);
+			}, error : function(e) { alert("이미지 업로드 실패 " + e.status) }
+		})
 	}
 </script>
 </body>

@@ -1,20 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<c:set var="path" value="${pageContext.request.contextPath}" />
+<c:set var="path" value="${pageContext.request.contextPath}" scope="application" />
 <!DOCTYPE html>
 <html>
 <head>
 <title><sitemesh:write property="title" /></title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- include summernote css/js -->
-<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" rel="stylesheet" >
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.min.css" rel="stylesheet">
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
+
 <style>
 	.fakeimg {
 	  height: 200px;
@@ -137,9 +140,8 @@
 	</div>
 </footer>
 
-<script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script>
+
 function pieGraph() {
 	$.ajax("${path}/ajax/graph1", {
 		success : function(data) { pieGraphPrint(data); }
@@ -192,7 +194,6 @@ function barGraphPrint(data) {
 	let cnts = [];
 	let colors = [];
 	$.each(rows, function(i, item) {
-		console.log(item)
 		dates[i] = item.fmtdate;
 		cnts[i] = item.cnt;
 		colors[i]= randomColor();
@@ -209,7 +210,7 @@ function barGraphPrint(data) {
 		},
 		options : {
 			responsive : true,
-			legend : { position : "right" },
+			legend : { display : false },
 			title : {
 				display : true,
 				text : "최근 7일간 게시물 수",

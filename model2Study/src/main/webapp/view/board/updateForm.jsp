@@ -22,7 +22,7 @@
 			<tr><th>제목</th>
 					<td><input type="text" name="title" value="${b.title}"></td></tr>
 			<tr><th>내용</th>
-					<td><textarea name="content" rows="10" id="content">${b.content}</textarea></tr>
+					<td><textarea name="content" rows="10" id="summernote">${b.content}</textarea></tr>
 			<tr><td>첨부파일</td><td style="text-laign:left">
 			<c:if test="${!empty b.file1}">
 				<div id="file_desc">${b.file1}
@@ -38,6 +38,34 @@
 	function file_delete() {
 		document.f.file2.value="";
 		file_desc.style.display="none";
+	}
+</script>
+<script>
+	$(function() {
+		$("#summernote").summernote({
+			height : 300,
+			callbacks : {
+					onImageUpload : function(files) {
+						for(let i = 0;i < files.length; i++) {
+							sendFile(files[i]);
+					}
+			}
+			}
+		})
+	})
+	function sendFile(file) {
+		let data = new FormData();
+		data.append("file", file);
+		$.ajax({
+			url : "${path}/uploadImage",
+			type : "post",
+			data : data,
+			processData : false,
+			contentType : false,
+			success : function(url) {
+				$("#summernote").summernote("insertImage", url);
+			}, error : function(e) { alert("이미지업로드 실패 " + e.status); }
+		})
 	}
 </script>
 </body>

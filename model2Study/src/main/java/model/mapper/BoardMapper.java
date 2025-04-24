@@ -76,7 +76,7 @@ public interface BoardMapper {
 	@Select("select date_format(regdate, '%Y-%m-%d') fmtdate, count(*) cnt from board "
 			+ "where regdate >=  now() - interval 7 day "
 			+ "group by date_format(regdate, '%Y-%m-%d') "
-			+ "order by cnt desc")
+			+ "order by 1 desc")
 	List<Map<String, Object>> graph2();
 
 }

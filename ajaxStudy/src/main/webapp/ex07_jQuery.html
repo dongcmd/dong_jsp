@@ -14,22 +14,25 @@
 	$(function() {
 		$("#btn2rm").click(function() {
 			$("h2").eq(-1).remove()
-		})
+		});
+		
 		$("#btn2").click(function() {
 			$.ajax({
 			url : "ex07_ajax2.jsp",
 			type : "post",
-//			data : "name=홍길동&age=20",
-			data : {name:"홍길동", age :"230"}  ,
+			data : "name=홍길동&age=20",
+//			data : {name:"홍길동", age :"230"}, 둘 다 가능
 			success : function(data) {
 				$("body").append(data)
 			},
 			error : function(e) { alert("서버 오류 : " + e.status)}
 			})
-		})
+		});
+		
 		$("#btn1rm").click(function() {
 			$("h1:last").remove()
-		})
+		});
+		
 		$("#btn1").click(function() {
 			$.ajax("ex07_ajax1.jsp", {
 				success : function(data) {
@@ -38,6 +41,7 @@
 					alert("서버 오류 : " + e.status)
 				}
 			})
-		})
+		});
+		
 	})
 </script></body></html>
